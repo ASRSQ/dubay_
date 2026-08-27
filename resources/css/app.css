@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@plugin "daisyui";
+
+@source "../../resources/views/**/*.blade.php";
+@source "../../app/Filament/**/*.php";
+@source "../../vendor/filament/**/*.blade.php";
+@source "../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php";
+@source "../../storage/framework/views/*.php";
+
+@theme {
+    /* ========================================
+       DUBAY — IDENTIDADE VISUAL
+       ======================================== */
+
+    --color-dubay-blue: #082754;
+    --color-dubay-blue-dark: #061D3F;
+    --color-dubay-blue-light: #123A70;
+
+    --color-dubay-gold: #C2A779;
+    --color-dubay-gold-dark: #A88C5D;
+    --color-dubay-gold-light: #D8C59F;
+
+    --color-dubay-white: #FFFFFF;
+    --color-dubay-off-white: #F8F7F4;
+
+    --color-dubay-text: #082754;
+    --color-dubay-muted: #687080;
+
+    --color-dubay-border: #D9D9D9;
+
+    /* Tipografia */
+    --font-sans: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+    --font-display: "Playfair Display", Georgia, serif;
+}
+
+/* ========================================
+   BASE
+   ======================================== */
+
+@layer base {
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        margin: 0;
+        background-color: var(--color-dubay-white);
+        color: var(--color-dubay-text);
+        font-family: var(--font-sans);
+    }
+
+    ::selection {
+        background-color: var(--color-dubay-gold);
+        color: var(--color-dubay-blue);
+    }
+}
