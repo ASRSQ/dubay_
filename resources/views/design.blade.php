@@ -220,21 +220,29 @@
 
         {{-- IMAGEM --}}
 
-        <div class="absolute inset-0">
+      <div class="absolute inset-0 bg-dubay-blue">
 
-            <img
-                src="{{ asset('images/hero_dubay.png') }}"
-                alt="Dubay Barbearia"
-               class="h-full w-full object-cover object-[center_45%]"
-            >
+    <picture>
 
-            {{-- OVERLAY --}}
+    {{-- MOBILE --}}
+    <source
+        media="(max-width: 1023px)"
+        srcset="{{ asset('images/hero_dubay_mobile.png') }}"
+    >
 
-            <div
-                class="absolute inset-0 bg-gradient-to-r from-dubay-blue via-dubay-blue/90 to-dubay-blue/20"
-            ></div>
+    {{-- DESKTOP --}}
+    <img
+        src="{{ asset('images/hero_dubay.png') }}"
+        alt="Dubay Barbearia"
+        class="h-full w-full object-cover object-[center_45%]"
+    >
 
-        </div>
+</picture>
+    <div
+        class="absolute inset-0 bg-gradient-to-r from-dubay-blue via-dubay-blue/90 to-dubay-blue/20"
+    ></div>
+
+</div>
 
 
         {{-- CONTEÚDO --}}
