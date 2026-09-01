@@ -9,6 +9,8 @@
         name="viewport"
         content="width=device-width, initial-scale=1.0"
     >
+    <meta name="theme-color" content="#082754">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
     <title>Dubay — Barbearia e Imagem Masculina</title>
 
@@ -27,9 +29,9 @@
         TOPBAR
     ========================================================== --}}
 
-    <header
-        class="fixed left-0 top-0 z-50 w-full border-b border-white/10 bg-dubay-blue/95 backdrop-blur-md"
-    >
+<header
+    class="fixed left-0 top-0 z-50 w-full border-b border-white/10 bg-[#082754]/95 backdrop-blur-md"
+>
 
         <div
             class="mx-auto flex h-[76px] max-w-7xl items-center justify-between px-5 lg:px-8"
