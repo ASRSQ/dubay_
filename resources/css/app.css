@@ -8,25 +8,32 @@
 @source "../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php";
 @source "../../storage/framework/views/*.php";
 
-@theme {
-    /* ========================================
-       DUBAY — IDENTIDADE VISUAL
-       ======================================== */
 
+/* =========================================================
+   DUBAY — DESIGN SYSTEM
+   ========================================================= */
+
+@theme {
+
+    /* Azul */
     --color-dubay-blue: #082754;
     --color-dubay-blue-dark: #061D3F;
     --color-dubay-blue-light: #123A70;
 
+    /* Dourado */
     --color-dubay-gold: #C2A779;
     --color-dubay-gold-dark: #A88C5D;
     --color-dubay-gold-light: #D8C59F;
 
+    /* Neutros */
     --color-dubay-white: #FFFFFF;
     --color-dubay-off-white: #F8F7F4;
 
+    /* Textos */
     --color-dubay-text: #082754;
     --color-dubay-muted: #687080;
 
+    /* Bordas */
     --color-dubay-border: #D9D9D9;
 
     /* Tipografia */
@@ -34,9 +41,10 @@
     --font-display: "Playfair Display", Georgia, serif;
 }
 
-/* ========================================
+
+/* =========================================================
    BASE
-   ======================================== */
+   ========================================================= */
 
 @layer base {
 
@@ -54,5 +62,75 @@
     ::selection {
         background-color: var(--color-dubay-gold);
         color: var(--color-dubay-blue);
+    }
+
+    a {
+        text-decoration: none;
+    }
+}
+
+
+/* =========================================================
+   NAVEGAÇÃO
+   ========================================================= */
+
+@layer components {
+
+    .nav-link {
+        position: relative;
+
+        color: rgba(255, 255, 255, 0.75);
+
+        font-size: 0.75rem;
+        font-weight: 600;
+
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+
+        transition:
+            color 0.3s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+        color: var(--color-dubay-gold);
+    }
+
+    .nav-link::after {
+        content: "";
+
+        position: absolute;
+
+        left: 0;
+        bottom: -8px;
+
+        width: 0;
+        height: 1px;
+
+        background-color: var(--color-dubay-gold);
+
+        transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+        width: 100%;
+    }
+
+
+    .mobile-link {
+        color: rgba(255, 255, 255, 0.8);
+
+        font-size: 0.8rem;
+        font-weight: 600;
+
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+
+        transition: color 0.3s ease;
+    }
+
+    .mobile-link:hover {
+        color: var(--color-dubay-gold);
     }
 }

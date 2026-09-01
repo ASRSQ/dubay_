@@ -7,7 +7,7 @@
     <div class="absolute inset-0">
 
         <img
-            src="{{ asset('images/hero-dubay.jpg') }}"
+            src="{{ asset('images/hero_dubay.jpeg') }}"
             alt="Dubay Barbearia"
             class="h-full w-full object-cover"
         >
