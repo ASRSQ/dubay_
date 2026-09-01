@@ -11,6 +11,11 @@
     >
     <meta name="theme-color" content="#082754">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <script>
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+    </script>
 
     <title>Dubay — Barbearia e Imagem Masculina</title>
 
@@ -202,119 +207,113 @@
     </header>
 
 
-    <main>
+   <main>
 
+    {{-- =========================================================
+        HERO
+    ========================================================== --}}
 
-        {{-- =========================================================
-            HERO
-        ========================================================== --}}
+    <section
+        id="inicio"
+        class="relative min-h-screen overflow-hidden bg-dubay-blue pt-[76px]"
+    >
 
-        <section
-            id="inicio"
-            class="relative min-h-screen overflow-hidden bg-dubay-blue pt-[76px]"
-        >
+        {{-- IMAGEM --}}
 
+        <div class="absolute inset-0">
 
-            {{-- IMAGEM --}}
-
-            <div class="absolute inset-0">
-
-                <img
-                    src="{{ asset('images/hero_dubay.png') }}"
-                    alt="Dubay Barbearia"
-                    class="h-full w-full object-cover object-center"
-                >
-
-
-                {{-- OVERLAY --}}
-
-                <div
-                    class="absolute inset-0 bg-gradient-to-r from-dubay-blue via-dubay-blue/90 to-dubay-blue/20"
-                ></div>
-
-            </div>
-
-
-            {{-- CONTEÚDO --}}
-
-            <div
-                class="relative z-10 mx-auto flex min-h-[calc(100vh-76px)] max-w-7xl items-center px-5 py-20 lg:px-8"
+            <img
+                src="{{ asset('images/hero_dubay.png') }}"
+                alt="Dubay Barbearia"
+               class="h-full w-full object-cover object-[center_45%]"
             >
 
-                <div class="max-w-3xl">
+            {{-- OVERLAY --}}
+
+            <div
+                class="absolute inset-0 bg-gradient-to-r from-dubay-blue via-dubay-blue/90 to-dubay-blue/20"
+            ></div>
+
+        </div>
 
 
-                    <p
-                        class="mb-6 text-sm font-semibold uppercase tracking-[0.3em] text-dubay-gold"
+        {{-- CONTEÚDO --}}
+
+        <div
+            class="relative z-10 mx-auto flex min-h-[calc(100vh-76px)] max-w-7xl items-center px-5 py-20 lg:px-8"
+        >
+
+            <div class="max-w-3xl">
+
+                <p
+                    class="mb-6 text-sm font-semibold uppercase tracking-[0.3em] text-dubay-gold"
+                >
+                    Barbearia e imagem masculina
+                </p>
+
+
+                <h1
+                    class="font-display text-5xl leading-[0.92] tracking-tight text-white sm:text-6xl md:text-7xl lg:text-8xl"
+                >
+
+                    SUA MELHOR
+
+                    <br>
+
+                    VERSÃO
+
+                    <br>
+
+                    <span class="text-dubay-gold">
+                        COMEÇA AQUI.
+                    </span>
+
+                </h1>
+
+
+                <div class="my-7 h-px w-16 bg-dubay-gold"></div>
+
+
+                <p
+                    class="max-w-xl text-base leading-7 text-white/80 sm:text-lg sm:leading-8"
+                >
+                    Mais do que um corte. Uma experiência de cuidado,
+                    estilo e imagem pensada para o homem que busca evolução.
+                </p>
+
+
+                {{-- BOTÕES --}}
+
+                <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+
+                    {{-- CONHEÇA NOSSOS SERVIÇOS --}}
+
+                    <a
+                        href="#servicos"
+                        class="rounded-lg border border-dubay-gold px-7 py-4 text-center text-sm font-bold uppercase tracking-wider text-dubay-gold transition hover:bg-dubay-gold hover:text-dubay-blue"
                     >
-                        Barbearia e imagem masculina
-                    </p>
+                        Conheça nossos serviços
+                    </a>
 
 
-                    <h1
-                        class="font-display text-5xl leading-[0.92] tracking-tight text-white sm:text-6xl md:text-7xl lg:text-8xl"
+                    {{-- AGENDAR — SOMENTE DESKTOP --}}
+
+                    <a
+                        href="https://app.faroldabarbearia.com.br/agendar/barbeariadubay"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="hidden rounded-lg bg-dubay-gold px-7 py-4 text-center text-sm font-bold uppercase tracking-wider text-dubay-blue transition hover:bg-dubay-gold-light lg:inline-flex"
                     >
-
-                        SUA MELHOR
-
-                        <br>
-
-                        VERSÃO
-
-                        <br>
-
-                        <span class="text-dubay-gold">
-                            COMEÇA AQUI.
-                        </span>
-
-                    </h1>
-
-
-                    <div class="my-7 h-px w-16 bg-dubay-gold"></div>
-
-
-                    <p
-                        class="max-w-xl text-base leading-7 text-white/80 sm:text-lg sm:leading-8"
-                    >
-                        Mais do que um corte. Uma experiência de cuidado,
-                        estilo e imagem pensada para o homem que busca evolução.
-                    </p>
-
-
-                    {{-- BOTÕES --}}
-
-                    <div class="mt-9 flex flex-col gap-3 sm:flex-row">
-
-
-                        {{-- PRIMEIRO: CONHEÇA NOSSOS SERVIÇOS --}}
-
-                        <a
-                            href="#servicos"
-                            class="rounded-lg border border-dubay-gold px-7 py-4 text-center text-sm font-bold uppercase tracking-wider text-dubay-gold transition hover:bg-dubay-gold hover:text-dubay-blue"
-                        >
-                            Conheça nossos serviços
-                        </a>
-
-
-                        {{-- SEGUNDO: AGENDAR --}}
-
-                        <!-- <a
-                            href="https://app.faroldabarbearia.com.br/agendar/barbeariadubay"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="rounded-lg bg-dubay-gold px-7 py-4 text-center text-sm font-bold uppercase tracking-wider text-dubay-blue transition hover:bg-dubay-gold-light"
-                        >
-                            Agendar horário
-                        </a> -->
-
-                    </div>
+                        Agendar horário
+                    </a>
 
                 </div>
 
             </div>
 
-        </section>
+        </div>
 
+    </section>
 {{-- =========================================================
     PROPOSTA DE VALOR
 ========================================================== --}}
@@ -917,7 +916,6 @@
 
                 </div>
 
-
                 {{-- CONTATO --}}
 
                 <div class="mt-8">
@@ -1015,6 +1013,88 @@
     </div>
 
 </section>
+{{-- =====================================================
+    PLAYLIST DUBAY
+====================================================== --}}
+
+<section
+    id="playlist"
+    class="bg-dubay-blue px-5 py-20 text-white sm:py-24 lg:px-8"
+>
+
+    <div class="mx-auto max-w-5xl">
+
+        {{-- TÍTULO --}}
+
+        <div class="text-center">
+
+            <p class="text-xs font-bold uppercase tracking-[0.3em] text-dubay-gold">
+                Trilha sonora
+            </p>
+
+            <div class="mx-auto mt-3 h-px w-12 bg-dubay-gold"></div>
+
+            <h2 class="mt-6 font-display text-4xl sm:text-5xl lg:text-6xl">
+                O estilo também se ouve.
+            </h2>
+
+            <p class="mx-auto mt-5 max-w-xl text-sm leading-7 text-white/60">
+                Uma seleção de músicas para acompanhar a experiência Dubay.
+            </p>
+
+        </div>
+
+
+        {{-- PLAYER SPOTIFY --}}
+
+        <div class="mx-auto mt-12 max-w-4xl overflow-hidden rounded-xl">
+
+            <div id="spotify-player"></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+{{-- =====================================================
+    SPOTIFY IFRAME API
+====================================================== --}}
+
+<script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
+
+<script>
+
+    window.onSpotifyIframeApiReady = (IFrameAPI) => {
+
+        const element = document.getElementById('spotify-player');
+
+        const options = {
+            uri: 'spotify:playlist:37i9dQZF1DWTo2LqahHGYj',
+            width: '100%',
+            height: 352,
+        };
+
+        IFrameAPI.createController(
+            element,
+            options,
+            (EmbedController) => {
+
+                /*
+                 * Tenta iniciar automaticamente.
+                 *
+                 * O navegador pode bloquear o áudio
+                 * caso não exista interação do usuário.
+                 */
+                EmbedController.play();
+
+            }
+        );
+
+    };
+
+</script>
 
     </main>
 
