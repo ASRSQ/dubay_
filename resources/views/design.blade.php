@@ -542,158 +542,250 @@
 
         </section>
 
+{{-- =========================================================
+    SERVIÇOS
+========================================================== --}}
 
+<section
+    id="servicos"
+    class="bg-dubay-blue px-5 py-20 text-white sm:py-24 lg:px-8"
+>
 
-        {{-- =========================================================
-            SERVIÇOS
-        ========================================================== --}}
+    <div class="mx-auto max-w-7xl">
 
-        <section
-            id="servicos"
-            class="bg-dubay-blue px-5 py-20 text-white sm:py-24 lg:px-8"
+        {{-- CABEÇALHO --}}
+
+        <div
+            class="flex flex-col justify-between gap-5 sm:flex-row sm:items-end"
         >
 
-            <div class="mx-auto max-w-7xl">
+            <div>
+
+                <p
+                    class="text-sm font-semibold uppercase tracking-[0.3em] text-dubay-gold"
+                >
+                    Nossos serviços
+                </p>
+
+                <h2 class="mt-4 font-display text-4xl sm:text-5xl">
+                    Seu estilo,
+
+                    <br>
+
+                    nosso cuidado.
+                </h2>
+
+            </div>
 
 
-                <div
-                    class="flex flex-col justify-between gap-5 sm:flex-row sm:items-end"
+            <p class="max-w-md leading-7 text-white/60">
+                Serviços pensados para cuidar da sua imagem
+                com precisão, técnica e personalidade.
+            </p>
+
+        </div>
+
+
+        {{-- =====================================================
+            PRINCIPAIS SERVIÇOS
+        ====================================================== --}}
+
+        @php
+
+            $servicosPrincipais = [
+
+               [
+                    'titulo' => 'Cabelo',
+                    'imagem' => asset('images/cabelo.jpeg')
+                ],
+                [
+                    'titulo' => 'Barba',
+                    'imagem' => asset('images/barba.jpeg')
+                ],
+
+                [
+                    'titulo' => 'Barba Terapia',
+                    'imagem' => asset('images/barbaterapia.jpeg')
+                ],
+
+            ];
+
+        @endphp
+
+
+        <div class="mt-14 grid gap-5 md:grid-cols-3">
+
+            @foreach($servicosPrincipais as $servico)
+
+                <article
+                    class="group overflow-hidden border border-white/10 bg-dubay-blue-dark transition duration-300 hover:-translate-y-1 hover:border-dubay-gold/60"
                 >
 
-                    <div>
+                    {{-- IMAGEM --}}
 
-                        <p
-                            class="text-sm font-semibold uppercase tracking-[0.3em] text-dubay-gold"
+                    <div class="relative aspect-[4/3] overflow-hidden">
+
+                        <img
+                            src="{{ $servico['imagem'] }}"
+                            alt="{{ $servico['titulo'] }}"
+                            class="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                            loading="lazy"
                         >
-                            Nossos serviços
-                        </p>
 
-                        <h2 class="mt-4 font-display text-4xl sm:text-5xl">
-                            Seu estilo,
-
-                            <br>
-
-                            nosso cuidado.
-                        </h2>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-dubay-blue via-transparent to-transparent opacity-80"
+                        ></div>
 
                     </div>
 
 
-                    <p class="max-w-md leading-7 text-white/60">
-                        Serviços pensados para cuidar da sua imagem
-                        com precisão, técnica e personalidade.
-                    </p>
+                    {{-- CONTEÚDO --}}
 
-                </div>
+                    <div class="p-6">
 
-
-                {{-- SERVIÇOS --}}
-
-                @php
-
-                    $servicos = [
-
-                        [
-                            'categoria' => 'Corte',
-                            'titulo' => 'Corte Degradê',
-                            'imagem' => 'https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=900&q=85'
-                        ],
-
-                        [
-                            'categoria' => 'Corte',
-                            'titulo' => 'Corte Social',
-                            'imagem' => 'https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=900&q=85'
-                        ],
-
-                        [
-                            'categoria' => 'Barba',
-                            'titulo' => 'Barba Completa',
-                            'imagem' => 'https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=900&q=85'
-                        ],
-
-                        [
-                            'categoria' => 'Barba',
-                            'titulo' => 'Barba Simples',
-                            'imagem' => 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=900&q=85'
-                        ],
-
-                        [
-                            'categoria' => 'Combo',
-                            'titulo' => 'Degradê + Barba',
-                            'imagem' => 'https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=900&q=85'
-                        ],
-
-                        [
-                            'categoria' => 'Combo',
-                            'titulo' => 'Social + Barba',
-                            'imagem' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6QzgUoLE-wzU4EwJe_nZGzwXeao5_Hj-HrQg0L_8HfA&s=10'
-                        ],
-
-                    ];
-
-                @endphp
+                        <h3 class="font-display text-3xl">
+                            {{ $servico['titulo'] }}
+                        </h3>
 
 
-                <div class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-
-                    @foreach($servicos as $servico)
-
-                        <article
-                            class="group overflow-hidden border border-white/10 bg-dubay-blue-dark transition duration-300 hover:-translate-y-1 hover:border-dubay-gold/60"
+                        <a
+                            href="https://app.faroldabarbearia.com.br/agendar/barbeariadubay"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="mt-5 inline-block text-xs font-bold uppercase tracking-[0.2em] text-dubay-gold transition hover:text-dubay-gold-light"
                         >
+                            Marcar horário →
+                        </a>
 
-                            <div class="relative aspect-[4/3] overflow-hidden">
+                    </div>
 
-                                <img
-                                    src="{{ $servico['imagem'] }}"
-                                    alt="{{ $servico['titulo'] }}"
-                                    class="h-full w-full object-cover transition duration-700 group-hover:scale-105"
-                                    loading="lazy"
-                                >
+                </article>
 
+            @endforeach
 
-                                <div
-                                    class="absolute inset-0 bg-gradient-to-t from-dubay-blue via-transparent to-transparent opacity-80"
-                                ></div>
+        </div>
 
 
-                                <span
-                                    class="absolute left-5 top-5 border border-dubay-gold bg-dubay-blue/80 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-dubay-gold"
-                                >
-                                    {{ $servico['categoria'] }}
-                                </span>
+        {{-- =====================================================
+            MAIS SERVIÇOS
+        ====================================================== --}}
 
-                            </div>
+        @php
+
+            $outrosServicos = [
+
+                'Sobrancelhas',
+
+                'Higienização de nariz',
+
+                'Hidratações com terapia capilar',
+
+                'Selagem capilar',
+
+                'Botox capilar',
+
+            ];
+
+        @endphp
 
 
-                            <div class="p-6">
+        <div class="mt-10 text-center">
 
-                                <h3 class="font-display text-2xl">
-                                    {{ $servico['titulo'] }}
-                                </h3>
+            <button
+                type="button"
+                id="btnMaisServicos"
+                class="inline-flex items-center gap-3 border border-dubay-gold px-7 py-4 text-xs font-bold uppercase tracking-[0.2em] text-dubay-gold transition hover:bg-dubay-gold hover:text-dubay-blue"
+            >
+
+                <span>
+                    Ver mais serviços
+                </span>
+
+                <svg
+                    id="iconeMaisServicos"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4 transition-transform duration-300"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="1.5"
+                        d="M19 9l-7 7-7-7"
+                    />
+                </svg>
+
+            </button>
+
+        </div>
 
 
-                                <a
-                                    href="https://app.faroldabarbearia.com.br/agendar/barbeariadubay"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    class="mt-5 inline-block text-xs font-bold uppercase tracking-[0.2em] text-dubay-gold"
-                                >
-                                    Agendar →
-                                </a>
+        {{-- =====================================================
+            LISTA DE OUTROS SERVIÇOS
+        ====================================================== --}}
 
-                            </div>
+        <div
+            id="listaMaisServicos"
+            class="mt-6 hidden overflow-hidden border border-white/10 bg-dubay-blue-dark"
+        >
 
-                        </article>
+            @foreach($outrosServicos as $servico)
 
-                    @endforeach
+                <div
+                    class="flex flex-col gap-4 border-b border-white/10 px-6 py-5 last:border-b-0 sm:flex-row sm:items-center sm:justify-between"
+                >
+
+                    <h3 class="font-display text-xl text-white">
+                        {{ $servico }}
+                    </h3>
+
+
+                    <a
+                        href="https://app.faroldabarbearia.com.br/agendar/barbeariadubay"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex shrink-0 items-center justify-center border border-dubay-gold px-5 py-3 text-xs font-bold uppercase tracking-[0.15em] text-dubay-gold transition hover:bg-dubay-gold hover:text-dubay-blue"
+                    >
+                        Marcar
+                    </a>
 
                 </div>
 
-            </div>
+            @endforeach
 
-        </section>
+        </div>
 
+    </div>
+
+</section>
+
+
+{{-- =========================================================
+    JAVASCRIPT — MAIS SERVIÇOS
+========================================================== --}}
+
+<script>
+
+    const btnMaisServicos = document.getElementById('btnMaisServicos');
+    const listaMaisServicos = document.getElementById('listaMaisServicos');
+    const iconeMaisServicos = document.getElementById('iconeMaisServicos');
+
+    btnMaisServicos?.addEventListener('click', () => {
+
+        listaMaisServicos.classList.toggle('hidden');
+
+        iconeMaisServicos.classList.toggle('rotate-180');
+
+        const aberto = !listaMaisServicos.classList.contains('hidden');
+
+        btnMaisServicos.querySelector('span').textContent =
+            aberto ? 'Ocultar serviços' : 'Ver mais serviços';
+
+    });
+
+</script>
 
 
         {{-- =========================================================
@@ -1079,7 +1171,7 @@
         const element = document.getElementById('spotify-player');
 
         const options = {
-            uri: 'spotify:playlist:37i9dQZF1DWTo2LqahHGYj',
+            uri: 'spotify:playlist:7AAIBzKzlBpsV87c16yUR2',
             width: '100%',
             height: 352,
         };
