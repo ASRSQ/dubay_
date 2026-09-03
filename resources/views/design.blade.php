@@ -1373,6 +1373,7 @@
     };
 
 </script> -->
+
 {{-- =========================================================
     DIAGNÓSTICO VISUAL DO PLAYER
 ========================================================= --}}
@@ -1441,7 +1442,7 @@
 <button
     id="dubay-diagnostic-open"
     type="button"
-    class="fixed bottom-4 left-4 z-[99998] hidden h-10 w-10 items-center justify-center rounded-full bg-dubay-blue text-lg text-dubay-gold shadow-xl"
+    class="fixed bottom-4 left-4 z-[99998] flex h-10 w-10 items-center justify-center rounded-full bg-dubay-blue text-lg text-dubay-gold shadow-xl"
     aria-label="Abrir diagnóstico"
 >
     ⚙
@@ -1653,6 +1654,17 @@ document.addEventListener('DOMContentLoaded', function () {
         'OK',
         'JavaScript da página foi carregado.'
     );
+
+    /*
+    |--------------------------------------------------------------------------
+    | ABRIR AUTOMATICAMENTE
+    |--------------------------------------------------------------------------
+    | O diagnóstico fica visível assim que a página carrega.
+    | Isso permite testar pelo navegador do Instagram sem console.
+    |--------------------------------------------------------------------------
+    */
+
+    showDiagnostic();
 
 
     const player = document.getElementById('dubay-player');
@@ -2188,6 +2200,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
             setPlayerStatus(
                 'Spotify não carregou neste navegador'
+            );
+
+            diagnosticLogMessage(
+                'ERRO',
+                'A API do Spotify não chamou o callback.',
+                'O script pode estar bloqueado, o navegador pode impedir o carregamento do iframe ou houve falha de rede.'
             );
 
             diagnosticLogMessage(
