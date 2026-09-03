@@ -1771,12 +1771,19 @@ document.addEventListener('DOMContentLoaded', function () {
     | EXPANDIR / RECOLHER
     |--------------------------------------------------------------------------
     */
+playerMain.addEventListener('click', function (event) {
 
-    playerMain.addEventListener('click', function () {
+    if (
+        event.target.closest('#dubay-play') ||
+        event.target.closest('#dubay-prev') ||
+        event.target.closest('#dubay-next') ||
+        event.target.closest('#dubay-close')
+    ) {
+        return;
+    }
 
-        playerExpanded.classList.toggle('hidden');
-
-    });
+    playerExpanded.classList.toggle('hidden');
+});
 
 
     /*
@@ -1809,16 +1816,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 ? 'Pausando música...'
                 : 'Iniciando música...'
         );
+playButton.addEventListener('click', function (event) {
 
-        if (isPlaying) {
+    event.preventDefault();
+    event.stopPropagation();
 
-            spotifyController.pause();
+    if (!spotifyController) {
+        return;
+    }
 
-        } else {
-
-            spotifyController.play();
-
-        }
+    spotifyController.togglePlay();
+});
 
     });
 
