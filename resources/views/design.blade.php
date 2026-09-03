@@ -207,6 +207,184 @@
     </header>
 
 
+{{-- =========================================================
+    PLAYER DUBAY
+========================================================= --}}
+
+<div
+    id="dubay-player"
+    class="fixed left-0 right-0 top-[76px] z-40 hidden"
+>
+    <div class="mx-auto max-w-7xl px-3 sm:px-5">
+
+        <div
+            id="dubay-player-bar"
+            class="overflow-hidden rounded-b-2xl bg-dubay-blue shadow-2xl"
+        >
+
+            {{-- PLAYER FINO --}}
+            <div
+                class="flex h-14 cursor-pointer items-center gap-3 px-4 text-white"
+                id="dubay-player-main"
+            >
+
+                {{-- CAPA --}}
+                <div
+                    class="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-dubay-gold"
+                >
+                    <span class="text-lg text-dubay-blue">
+                        ♫
+                    </span>
+                </div>
+
+
+                {{-- MÚSICA --}}
+                <div class="min-w-0 flex-1">
+
+                    <p
+                        id="dubay-track-title"
+                        class="truncate text-sm font-semibold"
+                    >
+                        Trilha sonora Dubay
+                    </p>
+
+                    <p
+                        id="dubay-track-artist"
+                        class="truncate text-xs text-dubay-gold-light"
+                    >
+                        Barbearia Dubay
+                    </p>
+
+                </div>
+
+
+                {{-- CONTROLES --}}
+                <div
+                    class="flex items-center gap-1"
+                    onclick="event.stopPropagation()"
+                >
+
+                    {{-- ANTERIOR --}}
+                    <button
+                        id="dubay-prev"
+                        type="button"
+                        class="hidden h-9 w-9 items-center justify-center rounded-full text-lg transition hover:bg-white/10 sm:flex"
+                        aria-label="Música anterior"
+                    >
+                        ‹
+                    </button>
+
+
+                    {{-- PLAY --}}
+                    <button
+                        id="dubay-play"
+                        type="button"
+                        class="flex h-9 w-9 items-center justify-center rounded-full bg-dubay-gold text-dubay-blue transition hover:bg-dubay-gold-light"
+                        aria-label="Reproduzir"
+                    >
+                        ▶
+                    </button>
+
+
+                    {{-- PRÓXIMA --}}
+                    <button
+                        id="dubay-next"
+                        type="button"
+                        class="hidden h-9 w-9 items-center justify-center rounded-full text-lg transition hover:bg-white/10 sm:flex"
+                        aria-label="Próxima música"
+                    >
+                        ›
+                    </button>
+
+
+                    {{-- FECHAR --}}
+                    <button
+                        id="dubay-close"
+                        type="button"
+                        class="ml-1 flex h-9 w-9 items-center justify-center rounded-full text-lg transition hover:bg-white/10"
+                        aria-label="Fechar player"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            {{-- PLAYER EXPANDIDO --}}
+            <div
+                id="dubay-player-expanded"
+                class="hidden border-t border-white/10 px-4 pb-4 pt-3"
+            >
+
+                <div class="flex items-center gap-3">
+
+                    <span
+                        id="dubay-current-time"
+                        class="w-8 text-xs text-white/60"
+                    >
+                        0:00
+                    </span>
+
+
+                    {{-- BARRA DE PROGRESSO --}}
+                    <div
+                        id="dubay-progress-container"
+                        class="h-1.5 flex-1 cursor-pointer overflow-hidden rounded-full bg-white/20"
+                    >
+
+                        <div
+                            id="dubay-progress"
+                            class="h-full w-0 rounded-full bg-dubay-gold"
+                        ></div>
+
+                    </div>
+
+
+                    <span
+                        id="dubay-duration"
+                        class="w-8 text-right text-xs text-white/60"
+                    >
+                        0:00
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+{{-- =========================================================
+    BOTÃO PARA ABRIR O PLAYER
+========================================================= --}}
+
+<button
+    id="dubay-player-open"
+    type="button"
+    class="fixed right-4 top-[88px] z-40 flex h-11 w-11 items-center justify-center rounded-full bg-dubay-gold text-xl text-dubay-blue shadow-lg transition hover:scale-105"
+    aria-label="Abrir música"
+>
+    ♫
+</button>
+
+
+{{-- =========================================================
+    SPOTIFY — MECANISMO DE REPRODUÇÃO
+    NÃO EXIBE A INTERFACE DO SPOTIFY
+========================================================= --}}
+
+<div
+    id="spotify-engine"
+    class="pointer-events-none fixed left-0 top-0 h-px w-px overflow-hidden opacity-0"
+    aria-hidden="true"
+></div>
+
+
    <main>
 
     {{-- =========================================================
@@ -1113,7 +1291,7 @@
     </div>
 
 </section>
-{{-- =====================================================
+<!-- {{-- =====================================================
     PLAYLIST DUBAY
 ====================================================== --}}
 
@@ -1194,8 +1372,465 @@
 
     };
 
-</script>
+</script> -->
+<script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
 
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const player = document.getElementById('dubay-player');
+    const playerOpen = document.getElementById('dubay-player-open');
+
+    const playerMain = document.getElementById('dubay-player-main');
+    const playerExpanded = document.getElementById('dubay-player-expanded');
+
+    const playButton = document.getElementById('dubay-play');
+    const closeButton = document.getElementById('dubay-close');
+
+    const progressContainer = document.getElementById(
+        'dubay-progress-container'
+    );
+
+    const progress = document.getElementById('dubay-progress');
+
+    const currentTime = document.getElementById(
+        'dubay-current-time'
+    );
+
+    const duration = document.getElementById(
+        'dubay-duration'
+    );
+
+    const trackTitle = document.getElementById(
+        'dubay-track-title'
+    );
+
+    const trackArtist = document.getElementById(
+        'dubay-track-artist'
+    );
+
+
+    let spotifyController = null;
+    let isPlaying = false;
+    let currentTrackUri = null;
+    let metadataRequestUri = null;
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | ABRIR PLAYER
+    |--------------------------------------------------------------------------
+    */
+
+    playerOpen.addEventListener('click', function () {
+
+        player.classList.remove('hidden');
+
+        playerOpen.classList.add('hidden');
+
+    });
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | FECHAR PLAYER
+    |--------------------------------------------------------------------------
+    */
+
+    closeButton.addEventListener('click', function () {
+
+        player.classList.add('hidden');
+
+        playerOpen.classList.remove('hidden');
+
+        playerExpanded.classList.add('hidden');
+
+    });
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | EXPANDIR / RECOLHER
+    |--------------------------------------------------------------------------
+    */
+
+    playerMain.addEventListener('click', function () {
+
+        playerExpanded.classList.toggle('hidden');
+
+    });
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | PLAY / PAUSE
+    |--------------------------------------------------------------------------
+    */
+
+    playButton.addEventListener('click', function () {
+
+        if (!spotifyController) {
+            return;
+        }
+
+        if (isPlaying) {
+
+            spotifyController.pause();
+
+        } else {
+
+            spotifyController.play();
+
+        }
+
+    });
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | BARRA DE PROGRESSO
+    |--------------------------------------------------------------------------
+    */
+
+    progressContainer.addEventListener('click', function (event) {
+
+        if (!spotifyController) {
+            return;
+        }
+
+        const rect = progressContainer.getBoundingClientRect();
+
+        const clickPosition = event.clientX - rect.left;
+
+        const percentage = Math.max(
+            0,
+            Math.min(
+                1,
+                clickPosition / rect.width
+            )
+        );
+
+        const totalSeconds = parseFloat(
+            progressContainer.dataset.duration || 0
+        );
+
+        if (!totalSeconds) {
+            return;
+        }
+
+        spotifyController.seek(
+            totalSeconds * percentage
+        );
+
+    });
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | FORMATA TEMPO
+    |--------------------------------------------------------------------------
+    */
+
+    function formatTime(seconds) {
+
+        seconds = Math.floor(seconds || 0);
+
+        const minutes = Math.floor(seconds / 60);
+
+        const remainingSeconds = seconds % 60;
+
+        return minutes + ':' +
+            String(remainingSeconds).padStart(2, '0');
+
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | SPOTIFY IFRAME API
+    |--------------------------------------------------------------------------
+    */
+
+    window.onSpotifyIframeApiReady = function (IFrameAPI) {
+
+        const element = document.getElementById(
+            'spotify-engine'
+        );
+
+        const options = {
+
+            uri: 'spotify:playlist:7AAIBzKzlBpsV87c16yUR2',
+
+            width: '1',
+
+            height: '1'
+
+        };
+
+
+        IFrameAPI.createController(
+            element,
+            options,
+            function (EmbedController) {
+
+                spotifyController = EmbedController;
+
+
+                /*
+                |--------------------------------------------------------------------------
+                | MÚSICA COMEÇOU
+                |--------------------------------------------------------------------------
+                */
+
+                EmbedController.addListener(
+                    'playback_started',
+                    function (event) {
+
+                        isPlaying = true;
+
+                        playButton.innerHTML = '❚❚';
+
+                        playButton.setAttribute(
+                            'aria-label',
+                            'Pausar'
+                        );
+
+
+                        /*
+                         * URI da música atual.
+                         */
+                        if (
+                            event &&
+                            event.data &&
+                            event.data.playingURI
+                        ) {
+
+                            atualizarMusica(
+                                event.data.playingURI
+                            );
+
+                        }
+
+                    }
+                );
+
+
+                /*
+                |--------------------------------------------------------------------------
+                | ATUALIZAÇÃO DO PLAYER
+                |--------------------------------------------------------------------------
+                */
+
+                EmbedController.addListener(
+                    'playback_update',
+                    function (event) {
+
+                        if (
+                            !event ||
+                            !event.data
+                        ) {
+                            return;
+                        }
+
+
+                        const data = event.data;
+
+
+                        /*
+                         * Estado de reprodução
+                         */
+                        if (
+                            typeof data.isPaused !== 'undefined'
+                        ) {
+
+                            isPlaying = !data.isPaused;
+
+                            if (isPlaying) {
+
+                                playButton.innerHTML = '❚❚';
+
+                                playButton.setAttribute(
+                                    'aria-label',
+                                    'Pausar'
+                                );
+
+                            } else {
+
+                                playButton.innerHTML = '▶';
+
+                                playButton.setAttribute(
+                                    'aria-label',
+                                    'Reproduzir'
+                                );
+
+                            }
+
+                        }
+
+
+                        /*
+                         * Tempo atual
+                         */
+                        /*
+                         * O Spotify envia position e duration
+                         * em milissegundos.
+                         */
+                        const position =
+                            (Number(data.position) || 0) / 1000;
+
+
+                        /*
+                         * Duração
+                         */
+                        const total =
+                            (Number(data.duration) || 0) / 1000;
+
+
+                        currentTime.textContent =
+                            formatTime(position);
+
+
+                        duration.textContent =
+                            formatTime(total);
+
+
+                        progressContainer.dataset.duration =
+                            total;
+
+
+                        /*
+                         * Progresso
+                         */
+                        if (total > 0) {
+
+                            const percentage =
+                                (position / total) * 100;
+
+                            progress.style.width =
+                                percentage + '%';
+
+                        }
+
+
+                        /*
+                         * Música atual
+                         */
+                        if (
+                            data.playingURI
+                        ) {
+
+                            atualizarMusica(
+                                data.playingURI
+                            );
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+    };
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | BUSCAR INFORMAÇÕES DA MÚSICA
+    |--------------------------------------------------------------------------
+    */
+
+    async function atualizarMusica(uri) {
+
+        if (!uri) {
+            return;
+        }
+
+        /* Só consulta novamente quando a música realmente mudou. */
+        if (uri === currentTrackUri) {
+            return;
+        }
+
+        currentTrackUri = uri;
+
+        console.log('🎵 Música atual:', uri);
+
+        /* Converte spotify:track:ID para uma URL do Spotify. */
+        const partes = uri.split(':');
+
+        if (
+            partes.length !== 3 ||
+            partes[0] !== 'spotify' ||
+            partes[1] !== 'track'
+        ) {
+            trackTitle.textContent = 'Trilha sonora Dubay';
+            trackArtist.textContent = 'Barbearia Dubay';
+            return;
+        }
+
+        const id = partes[2];
+        const spotifyUrl = `https://open.spotify.com/track/${id}`;
+
+        if (metadataRequestUri === uri) {
+            return;
+        }
+
+        metadataRequestUri = uri;
+
+        try {
+
+            const response = await fetch(
+                `https://open.spotify.com/oembed?url=${encodeURIComponent(spotifyUrl)}`
+            );
+
+            if (!response.ok) {
+                console.warn('Spotify oEmbed retornou:', response.status);
+                return;
+            }
+
+            const data = await response.json();
+
+            console.log('🎵 Dados recebidos do Spotify:', data);
+
+            /* Nome da música. */
+            if (data.title) {
+                trackTitle.textContent = data.title;
+            }
+
+            /*
+             * O oEmbed oficial fornece o título e a miniatura,
+             * mas não fornece de forma confiável o nome do artista.
+             */
+            trackArtist.textContent = 'Spotify';
+
+            /* Capa da música, caso o HTML tenha o elemento da capa. */
+            const cover = document.querySelector('#dubay-player-cover');
+
+            if (cover && data.thumbnail_url) {
+                cover.innerHTML = `
+                    <img
+                        src="${data.thumbnail_url}"
+                        alt=""
+                        class="h-full w-full object-cover"
+                    >
+                `;
+            }
+
+        } catch (error) {
+
+            console.error(
+                'Erro ao buscar informações da música:',
+                error
+            );
+
+        } finally {
+            metadataRequestUri = null;
+        }
+
+    }
+
+});
+</script>
     </main>
 
 
