@@ -1373,320 +1373,13 @@
     };
 
 </script> -->
-
-{{-- =========================================================
-    DIAGNÓSTICO VISUAL DO PLAYER
-========================================================= --}}
-
-<div
-    id="dubay-diagnostic"
-    class="fixed inset-0 z-[99999] hidden items-center justify-center bg-black/70 px-4"
->
-    <div
-        class="w-full max-w-md overflow-hidden rounded-2xl bg-white shadow-2xl"
-    >
-        <div class="flex items-center justify-between bg-dubay-blue px-5 py-4">
-            <div>
-                <p class="text-xs font-bold uppercase tracking-[0.2em] text-dubay-gold">
-                    Diagnóstico
-                </p>
-                <h3 class="mt-1 text-lg font-bold text-white">
-                    Player DUBAY
-                </h3>
-            </div>
-
-            <button
-                id="dubay-diagnostic-close"
-                type="button"
-                class="flex h-9 w-9 items-center justify-center rounded-full text-2xl text-white/80 hover:bg-white/10"
-                aria-label="Fechar diagnóstico"
-            >
-                ×
-            </button>
-        </div>
-
-        <div class="max-h-[60vh] overflow-y-auto p-5">
-            <div
-                id="dubay-diagnostic-status"
-                class="mb-4 rounded-xl bg-gray-100 p-3 text-sm font-semibold text-gray-800"
-            >
-                Iniciando diagnóstico...
-            </div>
-
-            <div
-                id="dubay-diagnostic-log"
-                class="space-y-2 text-xs"
-            ></div>
-        </div>
-
-        <div class="flex gap-2 border-t border-gray-200 p-4">
-            <button
-                id="dubay-diagnostic-copy"
-                type="button"
-                class="flex-1 rounded-xl bg-dubay-blue px-4 py-3 text-sm font-semibold text-white"
-            >
-                Copiar diagnóstico
-            </button>
-
-            <button
-                id="dubay-diagnostic-clear"
-                type="button"
-                class="rounded-xl border border-gray-300 px-4 py-3 text-sm font-semibold text-gray-700"
-            >
-                Limpar
-            </button>
-        </div>
-    </div>
-</div>
-
-<button
-    id="dubay-diagnostic-open"
-    type="button"
-    class="fixed bottom-4 left-4 z-[99998] flex h-10 w-10 items-center justify-center rounded-full bg-dubay-blue text-lg text-dubay-gold shadow-xl"
-    aria-label="Abrir diagnóstico"
->
-    ⚙
-</button>
-
 <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 
-    /*
-    |--------------------------------------------------------------------------
-    | DIAGNÓSTICO VISUAL
-    |--------------------------------------------------------------------------
-    | Tudo aparece na tela. Não depende do console do navegador.
-    |--------------------------------------------------------------------------
-    */
-
-    const diagnostic = document.getElementById('dubay-diagnostic');
-    const diagnosticOpen = document.getElementById('dubay-diagnostic-open');
-    const diagnosticClose = document.getElementById('dubay-diagnostic-close');
-    const diagnosticStatus = document.getElementById('dubay-diagnostic-status');
-    const diagnosticLog = document.getElementById('dubay-diagnostic-log');
-    const diagnosticCopy = document.getElementById('dubay-diagnostic-copy');
-    const diagnosticClear = document.getElementById('dubay-diagnostic-clear');
-
-    const diagnosticMessages = [];
-
-    function showDiagnostic() {
-
-        if (diagnostic) {
-            diagnostic.classList.remove('hidden');
-            diagnostic.classList.add('flex');
-        }
-
-    }
-
-    function hideDiagnostic() {
-
-        if (diagnostic) {
-            diagnostic.classList.add('hidden');
-            diagnostic.classList.remove('flex');
-        }
-
-    }
-
-    function diagnosticLogMessage(type, message, details = '') {
-
-        const time = new Date().toLocaleTimeString();
-
-        diagnosticMessages.push(
-            `[${time}] ${type}: ${message}${details ? ' | ' + details : ''}`
-        );
-
-        if (diagnosticLog) {
-
-            const item = document.createElement('div');
-
-            let icon = 'ℹ️';
-            let className = 'bg-gray-100 text-gray-700';
-
-            if (type === 'OK') {
-                icon = '✅';
-                className = 'bg-green-50 text-green-800';
-            }
-
-            if (type === 'AVISO') {
-                icon = '⚠️';
-                className = 'bg-yellow-50 text-yellow-800';
-            }
-
-            if (type === 'ERRO') {
-                icon = '❌';
-                className = 'bg-red-50 text-red-800';
-            }
-
-            item.className =
-                `rounded-lg p-3 ${className}`;
-
-            item.innerHTML = `
-                <div class="font-semibold">
-                    ${icon} ${type}
-                </div>
-                <div class="mt-1 break-words">
-                    ${message}
-                </div>
-                ${details ? `
-                    <div class="mt-1 break-words opacity-70">
-                        ${details}
-                    </div>
-                ` : ''}
-            `;
-
-            diagnosticLog.appendChild(item);
-        }
-
-        if (diagnosticStatus) {
-
-            diagnosticStatus.textContent =
-                `${iconForDiagnostic(type)} ${message}`;
-
-        }
-    }
-
-    function iconForDiagnostic(type) {
-
-        if (type === 'OK') {
-            return '✅';
-        }
-
-        if (type === 'AVISO') {
-            return '⚠️';
-        }
-
-        if (type === 'ERRO') {
-            return '❌';
-        }
-
-        return 'ℹ️';
-    }
-
-    function setPlayerStatus(message) {
-
-        const playerStatus = document.getElementById(
-            'dubay-player-status'
-        );
-
-        if (playerStatus) {
-            playerStatus.textContent = message;
-        }
-
-        diagnosticLogMessage('INFO', message);
-    }
-
-    diagnosticOpen?.addEventListener('click', showDiagnostic);
-
-    diagnosticClose?.addEventListener('click', hideDiagnostic);
-
-    diagnosticClear?.addEventListener('click', function () {
-
-        diagnosticMessages.length = 0;
-
-        if (diagnosticLog) {
-            diagnosticLog.innerHTML = '';
-        }
-
-        diagnosticLogMessage(
-            'INFO',
-            'Diagnóstico limpo.'
-        );
-
-    });
-
-    diagnosticCopy?.addEventListener('click', async function () {
-
-        const content =
-            diagnosticMessages.join('\n');
-
-        try {
-
-            await navigator.clipboard.writeText(content);
-
-            diagnosticLogMessage(
-                'OK',
-                'Diagnóstico copiado.'
-            );
-
-        } catch (error) {
-
-            diagnosticLogMessage(
-                'ERRO',
-                'Não foi possível copiar.',
-                error.message || String(error)
-            );
-
-        }
-
-    });
-
-    window.addEventListener('error', function (event) {
-
-        diagnosticLogMessage(
-            'ERRO',
-            'Erro JavaScript',
-            event.message || 'Erro desconhecido'
-        );
-
-        showDiagnostic();
-
-    });
-
-    window.addEventListener('unhandledrejection', function (event) {
-
-        const reason =
-            event.reason?.message ||
-            String(event.reason || 'Promise rejeitada');
-
-        diagnosticLogMessage(
-            'ERRO',
-            'Erro de Promise',
-            reason
-        );
-
-        showDiagnostic();
-
-    });
-
-    diagnosticLogMessage(
-        'OK',
-        'JavaScript da página foi carregado.'
-    );
-
-    /*
-    |--------------------------------------------------------------------------
-    | ABRIR AUTOMATICAMENTE
-    |--------------------------------------------------------------------------
-    | O diagnóstico fica visível assim que a página carrega.
-    | Isso permite testar pelo navegador do Instagram sem console.
-    |--------------------------------------------------------------------------
-    */
-
-    showDiagnostic();
-
-
     const player = document.getElementById('dubay-player');
     const playerOpen = document.getElementById('dubay-player-open');
-
-    diagnosticLogMessage(
-        player
-            ? 'OK'
-            : 'ERRO',
-        player
-            ? 'Elemento #dubay-player encontrado.'
-            : 'Elemento #dubay-player NÃO encontrado.'
-    );
-
-    diagnosticLogMessage(
-        playerOpen
-            ? 'OK'
-            : 'ERRO',
-        playerOpen
-            ? 'Botão de abertura encontrado.'
-            : 'Botão #dubay-player-open NÃO encontrado.'
-    );
 
     const playerMain = document.getElementById('dubay-player-main');
     const playerExpanded = document.getElementById('dubay-player-expanded');
@@ -1716,22 +1409,11 @@ document.addEventListener('DOMContentLoaded', function () {
         'dubay-track-artist'
     );
 
-    const playerStatus = document.getElementById(
-        'dubay-player-status'
-    );
-
-    function setPlayerStatus(message) {
-
-        if (playerStatus) {
-            playerStatus.textContent = message;
-        }
-
-        console.log('[DUBAY PLAYER]', message);
-    }
-
 
     let spotifyController = null;
     let isPlaying = false;
+    let currentTrackUri = null;
+    let metadataRequestUri = null;
 
 
     /*
@@ -1771,19 +1453,12 @@ document.addEventListener('DOMContentLoaded', function () {
     | EXPANDIR / RECOLHER
     |--------------------------------------------------------------------------
     */
-playerMain.addEventListener('click', function (event) {
 
-    if (
-        event.target.closest('#dubay-play') ||
-        event.target.closest('#dubay-prev') ||
-        event.target.closest('#dubay-next') ||
-        event.target.closest('#dubay-close')
-    ) {
-        return;
-    }
+    playerMain.addEventListener('click', function () {
 
-    playerExpanded.classList.toggle('hidden');
-});
+        playerExpanded.classList.toggle('hidden');
+
+    });
 
 
     /*
@@ -1795,38 +1470,18 @@ playerMain.addEventListener('click', function (event) {
     playButton.addEventListener('click', function () {
 
         if (!spotifyController) {
-
-            setPlayerStatus(
-                'Spotify ainda não foi inicializado'
-            );
-
-            diagnosticLogMessage(
-                'ERRO',
-                'Clique em reproduzir, mas o controller Spotify não existe.',
-                'O navegador pode ter bloqueado o iframe ou a API ainda não carregou.'
-            );
-
-            showDiagnostic();
-
             return;
         }
 
-        setPlayerStatus(
-            isPlaying
-                ? 'Pausando música...'
-                : 'Iniciando música...'
-        );
-playButton.addEventListener('click', function (event) {
+        if (isPlaying) {
 
-    event.preventDefault();
-    event.stopPropagation();
+            spotifyController.pause();
 
-    if (!spotifyController) {
-        return;
-    }
+        } else {
 
-    spotifyController.togglePlay();
-});
+            spotifyController.play();
+
+        }
 
     });
 
@@ -1898,25 +1553,9 @@ playButton.addEventListener('click', function (event) {
 
     window.onSpotifyIframeApiReady = function (IFrameAPI) {
 
-        setPlayerStatus('Spotify API carregada');
-
-        diagnosticLogMessage(
-            'OK',
-            'window.onSpotifyIframeApiReady foi chamado.'
-        );
-
         const element = document.getElementById(
             'spotify-engine'
         );
-
-        if (!element) {
-
-            setPlayerStatus(
-                'ERRO: spotify-engine não encontrado'
-            );
-
-            return;
-        }
 
         const options = {
 
@@ -1936,29 +1575,6 @@ playButton.addEventListener('click', function (event) {
 
                 spotifyController = EmbedController;
 
-                setPlayerStatus(
-                    'Player Spotify inicializado'
-                );
-
-                diagnosticLogMessage(
-                    'OK',
-                    'Spotify createController retornou um controller.'
-                );
-
-                EmbedController.addListener(
-                    'ready',
-                    function () {
-                        setPlayerStatus(
-                            'Spotify pronto para reproduzir'
-                        );
-
-                        diagnosticLogMessage(
-                            'OK',
-                            'Evento ready recebido do Spotify.'
-                        );
-                    }
-                );
-
 
                 /*
                 |--------------------------------------------------------------------------
@@ -1969,16 +1585,6 @@ playButton.addEventListener('click', function (event) {
                 EmbedController.addListener(
                     'playback_started',
                     function (event) {
-
-                        setPlayerStatus(
-                            'Reproduzindo normalmente'
-                        );
-
-                        diagnosticLogMessage(
-                            'OK',
-                            'Spotify confirmou início da reprodução.',
-                            event?.data?.playingURI || ''
-                        );
 
                         isPlaying = true;
 
@@ -2065,6 +1671,10 @@ playButton.addEventListener('click', function (event) {
                         /*
                          * Tempo atual
                          */
+                        /*
+                         * O Spotify envia position e duration
+                         * em milissegundos.
+                         */
                         const position =
                             (Number(data.position) || 0) / 1000;
 
@@ -2136,97 +1746,88 @@ playButton.addEventListener('click', function (event) {
             return;
         }
 
+        /* Só consulta novamente quando a música realmente mudou. */
+        if (uri === currentTrackUri) {
+            return;
+        }
+
+        currentTrackUri = uri;
+
+        console.log('🎵 Música atual:', uri);
+
+        /* Converte spotify:track:ID para uma URL do Spotify. */
+        const partes = uri.split(':');
+
+        if (
+            partes.length !== 3 ||
+            partes[0] !== 'spotify' ||
+            partes[1] !== 'track'
+        ) {
+            trackTitle.textContent = 'Trilha sonora Dubay';
+            trackArtist.textContent = 'Barbearia Dubay';
+            return;
+        }
+
+        const id = partes[2];
+        const spotifyUrl = `https://open.spotify.com/track/${id}`;
+
+        if (metadataRequestUri === uri) {
+            return;
+        }
+
+        metadataRequestUri = uri;
 
         try {
 
-            const spotifyUrl =
-                'https://open.spotify.com/oembed?url=' +
-                encodeURIComponent(
-                    uri.replace(
-                        'spotify:',
-                        'https://open.spotify.com/'
-                    )
-                );
-
-
-            const response =
-                await fetch(spotifyUrl);
-
+            const response = await fetch(
+                `https://open.spotify.com/oembed?url=${encodeURIComponent(spotifyUrl)}`
+            );
 
             if (!response.ok) {
+                console.warn('Spotify oEmbed retornou:', response.status);
                 return;
             }
 
+            const data = await response.json();
 
-            const data =
-                await response.json();
+            console.log('🎵 Dados recebidos do Spotify:', data);
 
-
+            /* Nome da música. */
             if (data.title) {
-
-                trackTitle.textContent =
-                    data.title;
-
+                trackTitle.textContent = data.title;
             }
 
+            /*
+             * O oEmbed oficial fornece o título e a miniatura,
+             * mas não fornece de forma confiável o nome do artista.
+             */
+            trackArtist.textContent = 'Spotify';
 
-            if (data.author_name) {
+            /* Capa da música, caso o HTML tenha o elemento da capa. */
+            const cover = document.querySelector('#dubay-player-cover');
 
-                trackArtist.textContent =
-                    data.author_name;
-
+            if (cover && data.thumbnail_url) {
+                cover.innerHTML = `
+                    <img
+                        src="${data.thumbnail_url}"
+                        alt=""
+                        class="h-full w-full object-cover"
+                    >
+                `;
             }
 
         } catch (error) {
 
-            setPlayerStatus(
-                'ERRO ao buscar música: ' +
-                (error.message || 'erro desconhecido')
-            );
-
             console.error(
-                'Não foi possível obter os dados da música.',
+                'Erro ao buscar informações da música:',
                 error
             );
 
+        } finally {
+            metadataRequestUri = null;
         }
 
     }
-
-    /*
-    |--------------------------------------------------------------------------
-    | DIAGNÓSTICO
-    |--------------------------------------------------------------------------
-    | Se o navegador do Instagram bloquear ou não carregar a API,
-    | a mensagem ficará visível no próprio player.
-    |--------------------------------------------------------------------------
-    */
-
-    setTimeout(function () {
-
-        if (!spotifyController) {
-
-            setPlayerStatus(
-                'Spotify não carregou neste navegador'
-            );
-
-            diagnosticLogMessage(
-                'ERRO',
-                'A API do Spotify não chamou o callback.',
-                'O script pode estar bloqueado, o navegador pode impedir o carregamento do iframe ou houve falha de rede.'
-            );
-
-            diagnosticLogMessage(
-                'ERRO',
-                'Spotify não inicializou após 10 segundos.',
-                'Teste pelo navegador normal e pelo navegador interno do Instagram.'
-            );
-
-            showDiagnostic();
-
-        }
-
-    }, 10000);
 
 });
 </script>
