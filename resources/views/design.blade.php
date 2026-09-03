@@ -1409,11 +1409,22 @@ document.addEventListener('DOMContentLoaded', function () {
         'dubay-track-artist'
     );
 
+    const playerStatus = document.getElementById(
+        'dubay-player-status'
+    );
+
+    function setPlayerStatus(message) {
+
+        if (playerStatus) {
+            playerStatus.textContent = message;
+        }
+
+        console.log('[DUBAY PLAYER]', message);
+    }
+
 
     let spotifyController = null;
     let isPlaying = false;
-    let currentTrackUri = null;
-    let metadataRequestUri = null;
 
 
     /*
@@ -1470,8 +1481,19 @@ document.addEventListener('DOMContentLoaded', function () {
     playButton.addEventListener('click', function () {
 
         if (!spotifyController) {
+
+            setPlayerStatus(
+                'ERRO: Spotify ainda não foi inicializado'
+            );
+
             return;
         }
+
+        setPlayerStatus(
+            isPlaying
+                ? 'Pausando música...'
+                : 'Iniciando música...'
+        );
 
         if (isPlaying) {
 
@@ -1553,9 +1575,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
     window.onSpotifyIframeApiReady = function (IFrameAPI) {
 
+        setPlayerStatus('Spotify API carregada');
+
         const element = document.getElementById(
             'spotify-engine'
         );
+
+        if (!element) {
+
+            setPlayerStatus(
+                'ERRO: spotify-engine não encontrado'
+            );
+
+            return;
+        }
 
         const options = {
 
@@ -1575,6 +1608,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 spotifyController = EmbedController;
 
+                setPlayerStatus(
+                    'Player Spotify inicializado'
+                );
+
+                EmbedController.addListener(
+                    'ready',
+                    function () {
+                        setPlayerStatus(
+                            'Spotify pronto para reproduzir'
+                        );
+                    }
+                );
+
 
                 /*
                 |--------------------------------------------------------------------------
@@ -1585,6 +1631,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 EmbedController.addListener(
                     'playback_started',
                     function (event) {
+
+                        setPlayerStatus(
+                            'Reproduzindo normalmente'
+                        );
 
                         isPlaying = true;
 
@@ -1671,10 +1721,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         /*
                          * Tempo atual
                          */
-                        /*
-                         * O Spotify envia position e duration
-                         * em milissegundos.
-                         */
                         const position =
                             (Number(data.position) || 0) / 1000;
 
@@ -1746,88 +1792,83 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        /* Só consulta novamente quando a música realmente mudou. */
-        if (uri === currentTrackUri) {
-            return;
-        }
-
-        currentTrackUri = uri;
-
-        console.log('🎵 Música atual:', uri);
-
-        /* Converte spotify:track:ID para uma URL do Spotify. */
-        const partes = uri.split(':');
-
-        if (
-            partes.length !== 3 ||
-            partes[0] !== 'spotify' ||
-            partes[1] !== 'track'
-        ) {
-            trackTitle.textContent = 'Trilha sonora Dubay';
-            trackArtist.textContent = 'Barbearia Dubay';
-            return;
-        }
-
-        const id = partes[2];
-        const spotifyUrl = `https://open.spotify.com/track/${id}`;
-
-        if (metadataRequestUri === uri) {
-            return;
-        }
-
-        metadataRequestUri = uri;
 
         try {
 
-            const response = await fetch(
-                `https://open.spotify.com/oembed?url=${encodeURIComponent(spotifyUrl)}`
-            );
+            const spotifyUrl =
+                'https://open.spotify.com/oembed?url=' +
+                encodeURIComponent(
+                    uri.replace(
+                        'spotify:',
+                        'https://open.spotify.com/'
+                    )
+                );
+
+
+            const response =
+                await fetch(spotifyUrl);
+
 
             if (!response.ok) {
-                console.warn('Spotify oEmbed retornou:', response.status);
                 return;
             }
 
-            const data = await response.json();
 
-            console.log('🎵 Dados recebidos do Spotify:', data);
+            const data =
+                await response.json();
 
-            /* Nome da música. */
+
             if (data.title) {
-                trackTitle.textContent = data.title;
+
+                trackTitle.textContent =
+                    data.title;
+
             }
 
-            /*
-             * O oEmbed oficial fornece o título e a miniatura,
-             * mas não fornece de forma confiável o nome do artista.
-             */
-            trackArtist.textContent = 'Spotify';
 
-            /* Capa da música, caso o HTML tenha o elemento da capa. */
-            const cover = document.querySelector('#dubay-player-cover');
+            if (data.author_name) {
 
-            if (cover && data.thumbnail_url) {
-                cover.innerHTML = `
-                    <img
-                        src="${data.thumbnail_url}"
-                        alt=""
-                        class="h-full w-full object-cover"
-                    >
-                `;
+                trackArtist.textContent =
+                    data.author_name;
+
             }
 
         } catch (error) {
 
+            setPlayerStatus(
+                'ERRO ao buscar música: ' +
+                (error.message || 'erro desconhecido')
+            );
+
             console.error(
-                'Erro ao buscar informações da música:',
+                'Não foi possível obter os dados da música.',
                 error
             );
 
-        } finally {
-            metadataRequestUri = null;
         }
 
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | DIAGNÓSTICO
+    |--------------------------------------------------------------------------
+    | Se o navegador do Instagram bloquear ou não carregar a API,
+    | a mensagem ficará visível no próprio player.
+    |--------------------------------------------------------------------------
+    */
+
+    setTimeout(function () {
+
+        if (!spotifyController) {
+
+            setPlayerStatus(
+                'ERRO: Spotify não carregou neste navegador'
+            );
+
+        }
+
+    }, 10000);
 
 });
 </script>
