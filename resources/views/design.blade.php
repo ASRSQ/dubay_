@@ -117,7 +117,7 @@
             {{-- AGENDAMENTO DESKTOP --}}
 
             <a
-                href="https://app.faroldabarbearia.com.br/agendar/barbeariadubay"
+                href="https://appbarber.com.br/download/prime?cod=11417584"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="hidden rounded-lg border border-dubay-gold px-5 py-3 text-xs font-semibold uppercase tracking-wider text-dubay-gold transition hover:bg-dubay-gold hover:text-dubay-blue sm:block"
@@ -192,7 +192,7 @@
 
 
                 <a
-                    href="https://app.faroldabarbearia.com.br/agendar/barbeariadubay"
+                    href="https://appbarber.com.br/download/prime?cod=11417584"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="mt-2 rounded-lg bg-dubay-gold px-5 py-3 text-center text-xs font-bold uppercase tracking-wider text-dubay-blue"
@@ -522,7 +522,7 @@
                     {{-- AGENDAR — SOMENTE DESKTOP --}}
 
                     <a
-                        href="https://app.faroldabarbearia.com.br/agendar/barbeariadubay"
+                        href="https://appbarber.com.br/download/prime?cod=11417584"
                         target="_blank"
                         rel="noopener noreferrer"
                         class="hidden rounded-lg bg-dubay-gold px-7 py-4 text-center text-sm font-bold uppercase tracking-wider text-dubay-blue transition hover:bg-dubay-gold-light lg:inline-flex"
@@ -864,7 +864,7 @@
 
 
                         <a
-                            href="https://app.faroldabarbearia.com.br/agendar/barbeariadubay"
+                            href="https://appbarber.com.br/download/prime?cod=11417584"
                             target="_blank"
                             rel="noopener noreferrer"
                             class="mt-5 inline-block text-xs font-bold uppercase tracking-[0.2em] text-dubay-gold transition hover:text-dubay-gold-light"
@@ -958,7 +958,7 @@
 
 
                     <a
-                        href="https://app.faroldabarbearia.com.br/agendar/barbeariadubay"
+                        href="https://appbarber.com.br/download/prime?cod=11417584"
                         target="_blank"
                         rel="noopener noreferrer"
                         class="inline-flex shrink-0 items-center justify-center border border-dubay-gold px-5 py-3 text-xs font-bold uppercase tracking-[0.15em] text-dubay-gold transition hover:bg-dubay-gold hover:text-dubay-blue"
@@ -1164,7 +1164,7 @@
                     {{-- AGENDAMENTO --}}
 
                     <a
-                        href="https://app.faroldabarbearia.com.br/agendar/barbeariadubay"
+                        href="https://appbarber.com.br/download/prime?cod=11417584"
                         target="_blank"
                         rel="noopener noreferrer"
                         class="rounded-lg border border-white/20 px-8 py-4 text-sm font-bold uppercase tracking-wider text-white transition hover:border-dubay-gold hover:text-dubay-gold"
@@ -1275,7 +1275,7 @@
                     </p>
 
                     <a
-                        href="https://app.faroldabarbearia.com.br/agendar/barbeariadubay"
+                        href="https://appbarber.com.br/download/prime?cod=11417584"
                         target="_blank"
                         rel="noopener noreferrer"
                         class="mt-5 inline-flex bg-dubay-blue px-6 py-3 text-xs font-bold uppercase tracking-[0.15em] text-dubay-white transition hover:bg-dubay-blue-light"
@@ -1563,7 +1563,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
    <a
     id="mobile-agendar"
-    href="https://app.faroldabarbearia.com.br/agendar/barbeariadubay"
+    href="https://appbarber.com.br/download/prime?cod=11417584"
     target="_blank"
     rel="noopener noreferrer"
     class="fixed bottom-4 left-4 right-4 z-40 hidden rounded-lg bg-dubay-gold px-6 py-4 text-center text-xs font-bold uppercase tracking-wider text-dubay-blue shadow-xl lg:hidden"
