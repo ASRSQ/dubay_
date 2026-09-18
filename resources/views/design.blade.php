@@ -283,6 +283,146 @@
     SPOTIFY — CONTROLE NATIVO
 ========================================================= --}}
 <main>
+{{-- =========================================================
+    ENCAMINHAMENTO — PRIMEIRA TELA
+========================================================== --}}
+
+<section
+    id="encaminhamento"
+    class="relative min-h-screen overflow-hidden bg-dubay-blue pt-[76px]"
+>
+
+    {{-- MESMO FUNDO DO HERO --}}
+
+    <div class="absolute inset-0 bg-dubay-blue">
+
+        <picture>
+
+            {{-- MOBILE --}}
+            <source
+                media="(max-width: 1023px)"
+                srcset="{{ asset('images/hero_dubay_mobile.png') }}"
+            >
+
+            {{-- DESKTOP --}}
+            <img
+                src="{{ asset('images/hero_dubay.png') }}"
+                alt="Dubay Barbearia"
+                class="h-full w-full object-cover object-[center_45%]"
+            >
+
+        </picture>
+
+        {{-- MESMO GRADIENTE DO HERO --}}
+
+        <div
+            class="absolute inset-0 bg-gradient-to-r from-dubay-blue via-dubay-blue/90 to-dubay-blue/20"
+        ></div>
+
+    </div>
+
+
+    {{-- CONTEÚDO --}}
+
+    <div
+        class="relative z-10 mx-auto flex min-h-[calc(100vh-76px)] max-w-7xl items-center px-5 py-20 lg:px-8"
+    >
+
+        <div class="max-w-3xl">
+
+            {{-- TEXTO PEQUENO --}}
+
+            <p
+                class="mb-6 text-sm font-semibold uppercase tracking-[0.3em] text-dubay-gold"
+            >
+                Barbearia e imagem masculina
+            </p>
+
+
+            {{-- TÍTULO --}}
+
+            
+
+            {{-- BOTÕES --}}
+
+            <div class="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+
+                {{-- APP --}}
+
+                <a
+                    href="https://appbarber.com.br/download/prime?cod=11417584"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="rounded-lg bg-dubay-gold px-7 py-4 text-center text-sm font-bold uppercase tracking-wider text-dubay-blue transition hover:bg-dubay-gold-light"
+                >
+                    Baixar o aplicativo
+                </a>
+
+
+                {{-- AGENDAMENTO --}}
+
+                <a
+                    href="https://l.appbarber.com.br/v8kr19z7"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="rounded-lg border border-dubay-gold px-7 py-4 text-center text-sm font-bold uppercase tracking-wider text-dubay-gold transition hover:bg-dubay-gold hover:text-dubay-blue"
+                >
+                    Agendar horário
+                </a>
+
+
+                {{-- WHATSAPP --}}
+
+                <a
+                    href="https://wa.me/message/4LTBNEFGTOL6F1"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="rounded-lg bg-white px-7 py-4 text-center text-sm font-bold uppercase tracking-wider text-dubay-blue transition hover:bg-dubay-off-white"
+                >
+                    Falar no WhatsApp
+                </a>
+
+            </div>
+
+
+            {{-- CONTINUAR PARA O HERO --}}
+
+            <div class="mt-12">
+
+                <button
+                    type="button"
+                    id="btn-conhecer-dubay"
+                    class="group inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.25em] text-white/70 transition hover:text-dubay-gold"
+                >
+
+                    <span>
+                        Conheça a DUBAY
+                    </span>
+
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 transition-transform duration-300 group-hover:translate-y-1"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="1.5"
+                            d="M19 9l-7 7-7-7"
+                        />
+                    </svg>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 
     {{-- =========================================================
         HERO
@@ -1421,15 +1561,15 @@ document.addEventListener('DOMContentLoaded', function () {
         BOTÃO FIXO MOBILE
     ========================================================== --}}
 
-    <a
-        href="https://app.faroldabarbearia.com.br/agendar/barbeariadubay"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="fixed bottom-4 left-4 right-4 z-40 rounded-lg bg-dubay-gold px-6 py-4 text-center text-xs font-bold uppercase tracking-wider text-dubay-blue shadow-xl lg:hidden"
-    >
-        Agendar horário
-    </a>
-
+   <a
+    id="mobile-agendar"
+    href="https://app.faroldabarbearia.com.br/agendar/barbeariadubay"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="fixed bottom-4 left-4 right-4 z-40 hidden rounded-lg bg-dubay-gold px-6 py-4 text-center text-xs font-bold uppercase tracking-wider text-dubay-blue shadow-xl lg:hidden"
+>
+    Agendar horário
+</a>
 
 
     {{-- =========================================================
@@ -1463,6 +1603,51 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
 
             });
+     document.addEventListener('DOMContentLoaded', function () {
+
+    const btnConhecer = document.getElementById('btn-conhecer-dubay');
+    const hero = document.getElementById('inicio');
+
+    btnConhecer?.addEventListener('click', function () {
+
+        hero?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+
+    });
+
+});
+document.addEventListener('DOMContentLoaded', function () {
+
+    const hero = document.getElementById('inicio');
+    const mobileAgendar = document.getElementById('mobile-agendar');
+
+    if (!hero || !mobileAgendar) {
+        return;
+    }
+
+    const observer = new IntersectionObserver(
+        function (entries, observer) {
+
+            if (entries[0].isIntersecting) {
+
+                // A partir do Hero, o botão fica disponível
+                mobileAgendar.classList.remove('hidden');
+
+                // Não precisamos observar novamente
+                observer.disconnect();
+            }
+
+        },
+        {
+            threshold: 0.1
+        }
+    );
+
+    observer.observe(hero);
+
+});
 
     </script>
 
