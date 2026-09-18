@@ -351,7 +351,7 @@
                 {{-- APP --}}
 
                 <a
-                    href="https://l.appbarber.com.br/v8kr19z7"
+                    href="https://appbarber.com.br/download/prime?cod=11417584"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="rounded-lg bg-dubay-gold px-7 py-4 text-center text-sm font-bold uppercase tracking-wider text-dubay-blue transition hover:bg-dubay-gold-light"
