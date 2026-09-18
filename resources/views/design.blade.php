@@ -117,7 +117,7 @@
             {{-- AGENDAMENTO DESKTOP --}}
 
             <a
-                href="https://appbarber.com.br/download/prime?cod=11417584"
+                href="https://l.appbarber.com.br/v8kr19z7"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="hidden rounded-lg border border-dubay-gold px-5 py-3 text-xs font-semibold uppercase tracking-wider text-dubay-gold transition hover:bg-dubay-gold hover:text-dubay-blue sm:block"
@@ -192,7 +192,7 @@
 
 
                 <a
-                    href="https://appbarber.com.br/download/prime?cod=11417584"
+                    href="https://l.appbarber.com.br/v8kr19z7"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="mt-2 rounded-lg bg-dubay-gold px-5 py-3 text-center text-xs font-bold uppercase tracking-wider text-dubay-blue"
@@ -292,7 +292,7 @@
     class="relative min-h-screen overflow-hidden bg-dubay-blue pt-[76px]"
 >
 
-    {{-- MESMO FUNDO DO HERO --}}
+    {{-- FUNDO --}}
 
     <div class="absolute inset-0 bg-dubay-blue">
 
@@ -313,44 +313,45 @@
 
         </picture>
 
-        {{-- MESMO GRADIENTE DO HERO --}}
-
+        {{-- GRADIENTE --}}
         <div
-            class="absolute inset-0 bg-gradient-to-r from-dubay-blue via-dubay-blue/90 to-dubay-blue/20"
+            class="absolute inset-0 bg-gradient-to-r from-dubay-blue via-dubay-blue/90 to-dubay-blue/30"
         ></div>
 
     </div>
 
 
-    {{-- CONTEÚDO --}}
+    {{-- CONTEÚDO CENTRALIZADO --}}
 
     <div
-        class="relative z-10 mx-auto flex min-h-[calc(100vh-76px)] max-w-7xl items-center px-5 py-20 lg:px-8"
+        class="relative z-10 mx-auto flex min-h-[calc(100vh-76px)] max-w-7xl items-center justify-center px-5 py-20 lg:px-8"
     >
 
-        <div class="max-w-3xl">
-
-            {{-- TEXTO PEQUENO --}}
-
-            <p
-                class="mb-6 text-sm font-semibold uppercase tracking-[0.3em] text-dubay-gold"
-            >
-                Barbearia e imagem masculina
-            </p>
+        <div class="flex w-full max-w-3xl flex-col items-center text-center">
 
 
-            {{-- TÍTULO --}}
+            {{-- BOAS-VINDAS --}}
 
-            
+     <h1
+    class="text-4xl font-bold uppercase tracking-[0.12em] text-white sm:text-5xl lg:text-6xl"
+>
+    Seja bem-vindo
+    <span class="block text-dubay-gold">
+        à DUBAY
+    </span>
+</h1>
+
 
             {{-- BOTÕES --}}
 
-            <div class="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <div
+                class="mt-10 flex w-full max-w-xl flex-col gap-4 sm:flex-row sm:flex-wrap sm:justify-center"
+            >
 
                 {{-- APP --}}
 
                 <a
-                    href="https://appbarber.com.br/download/prime?cod=11417584"
+                    href="https://l.appbarber.com.br/v8kr19z7"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="rounded-lg bg-dubay-gold px-7 py-4 text-center text-sm font-bold uppercase tracking-wider text-dubay-blue transition hover:bg-dubay-gold-light"
@@ -385,9 +386,9 @@
             </div>
 
 
-            {{-- CONTINUAR PARA O HERO --}}
+            {{-- CONHEÇA A DUBAY --}}
 
-            <div class="mt-12">
+            <div class="mt-14">
 
                 <button
                     type="button"
@@ -522,7 +523,7 @@
                     {{-- AGENDAR — SOMENTE DESKTOP --}}
 
                     <a
-                        href="https://appbarber.com.br/download/prime?cod=11417584"
+                        href="https://l.appbarber.com.br/v8kr19z7"
                         target="_blank"
                         rel="noopener noreferrer"
                         class="hidden rounded-lg bg-dubay-gold px-7 py-4 text-center text-sm font-bold uppercase tracking-wider text-dubay-blue transition hover:bg-dubay-gold-light lg:inline-flex"
@@ -864,7 +865,7 @@
 
 
                         <a
-                            href="https://appbarber.com.br/download/prime?cod=11417584"
+                            href="https://l.appbarber.com.br/v8kr19z7"
                             target="_blank"
                             rel="noopener noreferrer"
                             class="mt-5 inline-block text-xs font-bold uppercase tracking-[0.2em] text-dubay-gold transition hover:text-dubay-gold-light"
@@ -958,7 +959,7 @@
 
 
                     <a
-                        href="https://appbarber.com.br/download/prime?cod=11417584"
+                        href="https://l.appbarber.com.br/v8kr19z7"
                         target="_blank"
                         rel="noopener noreferrer"
                         class="inline-flex shrink-0 items-center justify-center border border-dubay-gold px-5 py-3 text-xs font-bold uppercase tracking-[0.15em] text-dubay-gold transition hover:bg-dubay-gold hover:text-dubay-blue"
@@ -1164,7 +1165,7 @@
                     {{-- AGENDAMENTO --}}
 
                     <a
-                        href="https://appbarber.com.br/download/prime?cod=11417584"
+                        href="https://l.appbarber.com.br/v8kr19z7"
                         target="_blank"
                         rel="noopener noreferrer"
                         class="rounded-lg border border-white/20 px-8 py-4 text-sm font-bold uppercase tracking-wider text-white transition hover:border-dubay-gold hover:text-dubay-gold"
@@ -1275,7 +1276,7 @@
                     </p>
 
                     <a
-                        href="https://appbarber.com.br/download/prime?cod=11417584"
+                        href="https://l.appbarber.com.br/v8kr19z7"
                         target="_blank"
                         rel="noopener noreferrer"
                         class="mt-5 inline-flex bg-dubay-blue px-6 py-3 text-xs font-bold uppercase tracking-[0.15em] text-dubay-white transition hover:bg-dubay-blue-light"
@@ -1563,7 +1564,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
    <a
     id="mobile-agendar"
-    href="https://appbarber.com.br/download/prime?cod=11417584"
+    href="https://l.appbarber.com.br/v8kr19z7"
     target="_blank"
     rel="noopener noreferrer"
     class="fixed bottom-4 left-4 right-4 z-40 hidden rounded-lg bg-dubay-gold px-6 py-4 text-center text-xs font-bold uppercase tracking-wider text-dubay-blue shadow-xl lg:hidden"
