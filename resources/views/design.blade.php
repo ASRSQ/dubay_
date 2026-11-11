@@ -117,7 +117,7 @@
             {{-- AGENDAMENTO DESKTOP --}}
 
             <a
-                href="https://l.appbarber.com.br/v8kr19z7"
+                href="https://l.appbarber.com.br/v8kr19z7" data-booking-open aria-haspopup="dialog" aria-controls="booking-dialog"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="hidden rounded-lg border border-dubay-gold px-5 py-3 text-xs font-semibold uppercase tracking-wider text-dubay-gold transition hover:bg-dubay-gold hover:text-dubay-blue sm:block"
@@ -192,7 +192,7 @@
 
 
                 <a
-                    href="https://l.appbarber.com.br/v8kr19z7"
+                    href="https://l.appbarber.com.br/v8kr19z7" data-booking-open aria-haspopup="dialog" aria-controls="booking-dialog"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="mt-2 rounded-lg bg-dubay-gold px-5 py-3 text-center text-xs font-bold uppercase tracking-wider text-dubay-blue"
@@ -363,7 +363,7 @@
                 {{-- AGENDAMENTO --}}
 
                 <a
-                    href="https://l.appbarber.com.br/v8kr19z7"
+                    href="https://l.appbarber.com.br/v8kr19z7" data-booking-open aria-haspopup="dialog" aria-controls="booking-dialog"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="rounded-lg border border-dubay-gold px-7 py-4 text-center text-sm font-bold uppercase tracking-wider text-dubay-gold transition hover:bg-dubay-gold hover:text-dubay-blue"
@@ -523,7 +523,7 @@
                     {{-- AGENDAR — SOMENTE DESKTOP --}}
 
                     <a
-                        href="https://l.appbarber.com.br/v8kr19z7"
+                        href="https://l.appbarber.com.br/v8kr19z7" data-booking-open aria-haspopup="dialog" aria-controls="booking-dialog"
                         target="_blank"
                         rel="noopener noreferrer"
                         class="hidden rounded-lg bg-dubay-gold px-7 py-4 text-center text-sm font-bold uppercase tracking-wider text-dubay-blue transition hover:bg-dubay-gold-light lg:inline-flex"
@@ -865,7 +865,7 @@
 
 
                         <a
-                            href="https://l.appbarber.com.br/v8kr19z7"
+                            href="https://l.appbarber.com.br/v8kr19z7" data-booking-open aria-haspopup="dialog" aria-controls="booking-dialog"
                             target="_blank"
                             rel="noopener noreferrer"
                             class="mt-5 inline-block text-xs font-bold uppercase tracking-[0.2em] text-dubay-gold transition hover:text-dubay-gold-light"
@@ -959,7 +959,7 @@
 
 
                     <a
-                        href="https://l.appbarber.com.br/v8kr19z7"
+                        href="https://l.appbarber.com.br/v8kr19z7" data-booking-open aria-haspopup="dialog" aria-controls="booking-dialog"
                         target="_blank"
                         rel="noopener noreferrer"
                         class="inline-flex shrink-0 items-center justify-center border border-dubay-gold px-5 py-3 text-xs font-bold uppercase tracking-[0.15em] text-dubay-gold transition hover:bg-dubay-gold hover:text-dubay-blue"
@@ -1165,7 +1165,7 @@
                     {{-- AGENDAMENTO --}}
 
                     <a
-                        href="https://l.appbarber.com.br/v8kr19z7"
+                        href="https://l.appbarber.com.br/v8kr19z7" data-booking-open aria-haspopup="dialog" aria-controls="booking-dialog"
                         target="_blank"
                         rel="noopener noreferrer"
                         class="rounded-lg border border-white/20 px-8 py-4 text-sm font-bold uppercase tracking-wider text-white transition hover:border-dubay-gold hover:text-dubay-gold"
@@ -1221,7 +1221,7 @@
                         Endereço
                     </p>
 
-                    <p class="mt-4 text-sm leading-7 text-dubay-muted">
+                    <p id="location-address" aria-live="polite" class="mt-4 text-sm leading-7 text-dubay-muted">
 
                         R. Tab. Francisco de Paula Lôbo, 594<br>
                         Sen. Francisco Menezes Pimentel<br>
@@ -1276,7 +1276,7 @@
                     </p>
 
                     <a
-                        href="https://l.appbarber.com.br/v8kr19z7"
+                        href="https://l.appbarber.com.br/v8kr19z7" data-booking-open aria-haspopup="dialog" aria-controls="booking-dialog"
                         target="_blank"
                         rel="noopener noreferrer"
                         class="mt-5 inline-flex bg-dubay-blue px-6 py-3 text-xs font-bold uppercase tracking-[0.15em] text-dubay-white transition hover:bg-dubay-blue-light"
@@ -1299,11 +1299,15 @@
                     Nossa localização
                 </p>
 
+                <div class="mb-5 flex flex-wrap gap-3" role="group" aria-label="Escolha a unidade no mapa">
+                    <button type="button" data-location="santa-quiteria" aria-pressed="true" class="rounded-lg border border-dubay-blue px-5 py-3 text-sm font-semibold text-dubay-blue aria-pressed:bg-dubay-blue aria-pressed:text-white">Santa Quitéria</button>
+                    <button type="button" data-location="sobral" aria-pressed="false" class="rounded-lg border border-dubay-blue px-5 py-3 text-sm font-semibold text-dubay-blue aria-pressed:bg-dubay-blue aria-pressed:text-white">Sobral</button>
+                </div>
                 <div
                     class="relative overflow-hidden border border-dubay-gold/30 bg-dubay-blue"
                 >
 
-                    <iframe
+                    <iframe id="location-map" title="Localização da Dubay Santa Quitéria"
                         src="https://www.google.com/maps?q=Barbearia%20Dubay,%20R.%20Tab.%20Francisco%20de%20Paula%20L%C3%B4bo,%20594,%20Santa%20Quit%C3%A9ria%20-%20CE&output=embed"
                         width="100%"
                         height="500"
@@ -1317,7 +1321,7 @@
 
                 </div>
 
-                <p class="mt-4 text-xs leading-6 text-dubay-muted">
+                <p id="location-caption" aria-live="polite" class="mt-4 text-xs leading-6 text-dubay-muted">
                     R. Tab. Francisco de Paula Lôbo, 594 —
                     Santa Quitéria, Ceará.
                 </p>
@@ -1564,7 +1568,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
    <a
     id="mobile-agendar"
-    href="https://l.appbarber.com.br/v8kr19z7"
+    href="https://l.appbarber.com.br/v8kr19z7" data-booking-open aria-haspopup="dialog" aria-controls="booking-dialog"
     target="_blank"
     rel="noopener noreferrer"
     class="fixed bottom-4 left-4 right-4 z-40 hidden rounded-lg bg-dubay-gold px-6 py-4 text-center text-xs font-bold uppercase tracking-wider text-dubay-blue shadow-xl lg:hidden"
@@ -1653,6 +1657,17 @@ document.addEventListener('DOMContentLoaded', function () {
     </script>
 
 
+    <dialog id="booking-dialog" aria-labelledby="booking-title" aria-describedby="booking-description" class="m-auto w-[calc(100%_-_2rem)] max-w-md rounded-2xl border border-dubay-gold/40 bg-dubay-blue p-7 text-white shadow-2xl backdrop:bg-black/70">
+        <form method="dialog" class="flex justify-end">
+            <button aria-label="Fechar escolha de unidade" class="rounded-lg px-3 py-1 text-2xl text-dubay-gold focus-visible:outline-2">&times;</button>
+        </form>
+        <h2 id="booking-title" class="font-display text-3xl text-dubay-gold">Onde vamos te receber?</h2>
+        <p id="booking-description" class="mt-3 text-sm leading-6 text-white/80">Escolha a unidade para agendar seu horário.</p>
+        <div class="mt-6 flex flex-col gap-3">
+            <a href="https://l.appbarber.com.br/y7nwduc1" target="_blank" rel="noopener noreferrer" class="rounded-lg bg-dubay-gold px-5 py-4 text-center font-bold text-dubay-blue transition hover:bg-dubay-gold-light">Dubay Sobral</a>
+            <a href="https://l.appbarber.com.br/v8kr19z7" target="_blank" rel="noopener noreferrer" class="rounded-lg border border-dubay-gold px-5 py-4 text-center font-bold text-dubay-gold transition hover:bg-dubay-gold hover:text-dubay-blue">Dubay Santa Quitéria</a>
+        </div>
+    </dialog>
 </body>
 
 </html>
